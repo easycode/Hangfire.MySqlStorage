@@ -321,7 +321,8 @@ select sum(s.`Value`) from (
 
         private T UseConnection<T>(Func<MySqlConnection, T> action)
         {
-            return _storage.UseTransaction(action, IsolationLevel.ReadUncommitted);
+            return _storage.UseConnection(action);
+            //return _storage.UseTransaction(action, IsolationLevel.ReadUncommitted);
         }
 
         private long GetNumberOfJobsByStateName(MySqlConnection connection, string stateName)
